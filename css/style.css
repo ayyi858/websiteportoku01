@@ -204,6 +204,7 @@ nav {
 
 .hero-image {
     position: relative;
+    overflow: visible; /* Memastikan tidak ada batasan/cropping */
 }
 
 .profile-pic {
@@ -211,10 +212,15 @@ nav {
     height: 400px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 1;
-    border: 8px solid #1a1f3e; /* Border gelap di sekitar foto */
+    border: none;
+    box-shadow: none;
+}
+
+/* Jika ada container lain yang membatasi, pastikan juga diatur: */
+.hero {
+    overflow: visible;
 }
 
 .decoration {
@@ -227,10 +233,10 @@ nav {
     z-index: 2;
 }
 
-/* Skills Bar */
+/* Skills Bar - dengan teks miring */
 .skills-bar {
-    background-color: #c1a71a; /* Warna emas */
-    padding: 15px 0;
+    background-color: #c1a71a;
+    padding: 20px 0;
     margin-top: 50px;
     transform: skewY(-2deg);
     width: 100%;
@@ -239,25 +245,30 @@ nav {
 }
 
 .skills-content {
-    transform: skewY(2deg);
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     color: white;
     font-size: 26px;
     font-weight: 600;
     white-space: nowrap;
-    animation: slide 20s linear infinite;
-    gap: 80px;
-    padding: 0 20px;
+    width: 200%;
     position: relative;
+    /* Tidak ada transform skewY agar teks tetap miring */
+    animation: skillsScroll 15s linear infinite;
 }
 
-@keyframes slide {
+.skills-content div {
+    padding: 0 40px;
+    text-align: center;
+}
+
+@keyframes skillsScroll {
     0% {
-        transform: translateX(0) skewY(2deg);
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-100% - 80px)) skewY(2deg);
+        transform: translateX(-50%);
     }
 }
 
